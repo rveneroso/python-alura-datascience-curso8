@@ -22,6 +22,7 @@ def gerador_palavras(palavra):
     for i in range(len(palavra)+1):
         fatias.append((palavra[:i],palavra[i:]))
     palavras_geradas = insere_letras(fatias)
+    palavras_geradas += deleta_caracteres(fatias)
     return palavras_geradas
 
 def insere_letras(fatias):
@@ -30,6 +31,12 @@ def insere_letras(fatias):
     for E, D in fatias:
         for letra in letras:
             novas_palavras.append(E + letra + D)
+    return novas_palavras
+
+def deleta_caracteres(fatias):
+    novas_palavras = []
+    for E, D in fatias:
+        novas_palavras.append(E + D[1:])
     return novas_palavras
 
 def corretor(palavra, lista_palavras):

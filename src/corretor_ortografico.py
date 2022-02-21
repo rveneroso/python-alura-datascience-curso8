@@ -7,7 +7,7 @@ with open('../data/artigos.txt','r') as f:
     # Lê o arquivo f e atribui o conteúdo dele à variável artigos.
     artigos = f.read()
 lista_palavras = nltk.tokenize.word_tokenize(artigos)
-print(fn.corretor("lgica", lista_palavras))
+print(fn.corretor("lóigica", lista_palavras))
 
 
 
