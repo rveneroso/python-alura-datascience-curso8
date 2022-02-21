@@ -56,10 +56,29 @@ def inverte_letra(fatias):
             novas_palavras.append(E + D[1] + D[0] + D[2:])
     return novas_palavras
 
+def gerador_turbinado(palavras_geradas):
+    novas_palavras = []
+    for palavra in palavras_geradas:
+        novas_palavras += gerador_palavras(palavra)
+    return novas_palavras
+
 def corretor(palavra, lista_palavras):
     palavras_geradas = gerador_palavras(palavra)
+    palavras_geradas = gerador_turbinado(palavras_geradas)
     gera_lista_normalizada(lista_palavras)
     palavra_correta = max(palavras_geradas, key=probabilidade)
+    return palavra_correta
+
+def novo_corretor(palavra, vocabulario):
+    palavras_geradas = gerador_palavras(palavra)
+    palavras_turbinado = gerador_turbinado(palavras_geradas)
+    todas_palavras = set(palavras_geradas + palavras_turbinado)
+    candidatos = [palavra]
+    for palavra in todas_palavras:
+        if palavra in vocabulario:
+            candidatos.append(palavra)
+    print(len(candidatos))
+    palavra_correta = max(candidatos, key=probabilidade)
     return palavra_correta
 
 def probabilidade(palavra_gerada):
