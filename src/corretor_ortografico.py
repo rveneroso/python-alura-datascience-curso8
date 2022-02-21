@@ -6,8 +6,8 @@ import funcoes as fn
 with open('../data/artigos.txt','r') as f:
     # Lê o arquivo f e atribui o conteúdo dele à variável artigos.
     artigos = f.read()
-
-print(fn.gerador_palavras("lgica"))
+lista_palavras = nltk.tokenize.word_tokenize(artigos)
+print(fn.corretor("lgica", lista_palavras))
 
 
 
