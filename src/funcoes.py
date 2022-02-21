@@ -69,18 +69,6 @@ def corretor(palavra, lista_palavras):
     palavra_correta = max(palavras_geradas, key=probabilidade)
     return palavra_correta
 
-def novo_corretor(palavra, vocabulario):
-    palavras_geradas = gerador_palavras(palavra)
-    palavras_turbinado = gerador_turbinado(palavras_geradas)
-    todas_palavras = set(palavras_geradas + palavras_turbinado)
-    candidatos = [palavra]
-    for palavra in todas_palavras:
-        if palavra in vocabulario:
-            candidatos.append(palavra)
-    print(len(candidatos))
-    palavra_correta = max(candidatos, key=probabilidade)
-    return palavra_correta
-
 def probabilidade(palavra_gerada):
     frequencia = nltk.FreqDist(lista_normalizada)
     return frequencia[palavra_gerada]/len(lista_normalizada)
